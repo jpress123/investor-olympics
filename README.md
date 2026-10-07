@@ -1,6 +1,6 @@
 # QuickStarter · 创新创业实践
 
-Class 3 replaces the former Investor Olympics round game with a Kickstarter-inspired classroom campaign. The repository name and public address stay the same: **https://www.josephpress.com/investor-olympics/**.
+Class 3 replaces the former Investor Olympics round game with a Kickstarter-inspired classroom campaign. The source repository remains `investor-olympics`; the new public address is: **https://www.josephpress.com/quickstarter/**.
 
 Students upload **only their existing Assignments 1 and 2**, one PDF each (15 MB maximum per file). The instructor prepares and approves exactly three bilingual pitch pages:
 
@@ -16,9 +16,9 @@ Kickstarter-inspired features include project discovery, three-page pitches, fun
 
 ## Hosting and readiness
 
-- **GitHub Pages:** static `index.html`, `config.js` and committed `assets/`; supports the existing project subdirectory.
+- **GitHub Pages:** static files are copied to `quickstarter/` in the `jpress123.github.io` website repository. The original `/investor-olympics/` address redirects to the new route, preserving instructor links.
 - **Tencent CloudBase:** one event cloud function, document database and private file storage. The browser never writes portfolios directly to the database.
-- **Student:** `/investor-olympics/`; **instructor:** `/investor-olympics/?instructor=1`.
+- **Student:** `/quickstarter/`; **instructor:** `/quickstarter/?instructor=1`.
 - EN/中文 toggle; responsive phone/tablet/desktop layouts and 44 px minimum button targets.
 - 2–40 teams per class. Ask students to choose one team member to save decisions. The instructor can see every team's choices; individual students do not receive separate portfolios.
 
@@ -39,3 +39,15 @@ npm run preview
 The local preview prints demonstration access codes and an instructor password. It binds only to `127.0.0.1:5180`, clearly labels every page LOCAL REHEARSAL, and uses disposable in-memory data. It exercises the same classroom rules; it does not validate a real Tencent deployment. The preview server and test credentials are never included in the production JavaScript bundle.
 
 After frontend changes, run `npm run build` and commit both source and generated assets. Use `npm ci --prefix cloudfunctions/quickstarter` to install the separately locked backend dependencies. [VALIDATION.md](VALIDATION.md) describes tested behavior and remaining deployment checks.
+
+## Publish the new address
+
+The main website uses `www.josephpress.com` as its configured domain. The bare `josephpress.com` domain currently points to a parking page and needs a separate domain-forwarding/DNS correction. Publishing this folder does not change that domain configuration.
+
+After building, copy the four public files into the main website repository:
+
+```sh
+npm run sync:website -- /absolute/path/to/jpress123.github.io
+```
+
+Review and commit only the `quickstarter/` changes there, then push that website's publishing branch. Keep the source and CloudBase function in this repository. Publish the new website folder before publishing the old-address redirect. Future frontend or public-config updates must also be synchronized to the website folder.

@@ -61,7 +61,7 @@ const server = http.createServer(async (req, res) => {
       return res.end(sdk);
     }
     let relative = decodeURIComponent(u.pathname).replace(
-      /^\/investor-olympics\//,
+      /^\/(?:investor-olympics|quickstarter)\//,
       "/",
     );
     if (relative === "/") relative = "/index.html";
@@ -106,8 +106,8 @@ server.listen(5180, "127.0.0.1", () =>
   console.log(
     JSON.stringify(
       {
-        preview: base + "/investor-olympics/",
-        instructor: base + "/investor-olympics/?instructor=1",
+        preview: base + "/quickstarter/",
+        instructor: base + "/quickstarter/?instructor=1",
         localPassword: f.env.QUICKSTARTER_ADMIN_PASSWORD,
         classCode: room.classCode,
         teams: room.teams.map((t) => ({ name: t.name, code: t.code })),
