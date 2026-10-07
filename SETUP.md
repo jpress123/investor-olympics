@@ -1,6 +1,6 @@
 # Connect QuickStarter to the existing website
 
-The public route remains **https://www.josephpress.com/investor-olympics/**. This update is prepared on `codex/quickstarter-canvas-mobile`. Review that branch before merging into the branch used by GitHub Pages. The repository's original `config.js` contained no CloudBase environment ID or publishable key, so those details must be supplied before classroom use.
+The new public route is **https://www.josephpress.com/quickstarter/**. The source remains in `investor-olympics`; the four public files are served from `quickstarter/` in the main `jpress123.github.io` website repository. The repository's original `config.js` contained no CloudBase environment ID or publishable key, so those details must be supplied before classroom use.
 
 ## 1. Set up Tencent CloudBase
 
@@ -50,7 +50,7 @@ window.QS_CONFIG = {
 };
 ```
 
-Do not use the instructor password or a Tencent API secret here. Keep the function name identical to the deployed name. For the existing GitHub Pages setup, publish from the repository root; compiled assets are already included, so Pages does not need npm or a Node server. Preserve the main site's custom-domain configuration.
+Do not use the instructor password or a Tencent API secret here. Keep the function name identical to the deployed name. Run `npm run build`, then `npm run sync:website -- /absolute/path/to/jpress123.github.io`. Commit the four files in that website repository's `quickstarter/` folder and push its publishing branch. Pages does not need npm or a Node server. Preserve the main site's custom-domain configuration. Publish the new folder before the redirect from the old address.
 
 ## 4. Rehearse before inviting the class
 
